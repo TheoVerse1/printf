@@ -3,20 +3,34 @@
 
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stddef.h>
 #include <unistd.h>
+#include <limits.h>
 /**
- * struct type - connect conversion specifiers with the correct print function
- * @print: a function pointer for the print functions
- * @identifier: the conversion specifier
+ * struct vaargs - struct to canalize buffer
+ * @typef: Type of format
+ * @f: pointer to function
  */
-typedef struct type
+typedef struct vaargs
 {
-	char *identifier;
-	int (*print)(va_list);
-} type_t;
-
+	char typef;
+	int (*f)();
+} vargs;
+int _printf(const char *format, ...);
 int _putchar(char c);
-int (*get_function(const char *specifier))(va_list);
-int _printf(const char *, ...);
-
-#endif /* MAIN_H */
+void copyto_buffer(char *dest, char letter, int *pos);
+int (*looktype(char s))(va_list args, char *dest, int *pos);
+int save_string(va_list args, char *dest, int *pos);
+int save_char(va_list args, char *dest, int *pos);
+void rev_string(char *s);
+int save_number(va_list args, char *dest, int *pos);
+int save_percent(va_list args, char *dest, int *pos);
+int save_binary(va_list args, char *dest, int *pos);
+int save_unsigned(va_list args, char *dest, int *pos);
+int save_octal(va_list args, char *dest, int *pos);
+int save_lwhexa(va_list args, char *dest, int *pos);
+int save_uphexa(va_list args, char *dest, int *pos);
+int save_rot13(va_list args, char *dest, int *pos);
+int save_reverse(va_list args, char *dest, int *pos);
+unsigned int _base(unsigned int num, int base);
+#endif
