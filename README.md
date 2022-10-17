@@ -1,3 +1,5 @@
+This is the first group project with ALX Africa. We worked together in order to create the files
+
 Mandator Project Tasks:
 
 0. I'm not going anywhere. You can print that wherever you want to. I'm here and I'm a Spur for life
