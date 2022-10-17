@@ -1,36 +1,32 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef _MAIN_H_
+#define _MAIN_H_
 
-#include <stdlib.h>
 #include <stdarg.h>
-#include <stddef.h>
-#include <unistd.h>
-#include <limits.h>
 /**
- * struct vaargs - struct to canalize buffer
- * @typef: Type of format
- * @f: pointer to function
+ * struct print - structure for printing various types
+ * @t: type to print
+ * @f: function to print
  */
-typedef struct vaargs
+typedef struct print
 {
-	char typef;
-	int (*f)();
-} vargs;
-int _printf(const char *format, ...);
+	char *t;
+	int (*f)(va_list);
+} print_t;
+
 int _putchar(char c);
-void copyto_buffer(char *dest, char letter, int *pos);
-int (*looktype(char s))(va_list args, char *dest, int *pos);
-int save_string(va_list args, char *dest, int *pos);
-int save_char(va_list args, char *dest, int *pos);
-void rev_string(char *s);
-int save_number(va_list args, char *dest, int *pos);
-int save_percent(va_list args, char *dest, int *pos);
-int save_binary(va_list args, char *dest, int *pos);
-int save_unsigned(va_list args, char *dest, int *pos);
-int save_octal(va_list args, char *dest, int *pos);
-int save_lwhexa(va_list args, char *dest, int *pos);
-int save_uphexa(va_list args, char *dest, int *pos);
-int save_rot13(va_list args, char *dest, int *pos);
-int save_reverse(va_list args, char *dest, int *pos);
-unsigned int _base(unsigned int num, int base);
-#endif
+int _printf(const char *format, ...);
+int print_c(va_list c);
+int print_s(va_list s);
+int print_i(va_list i);
+int print_d(va_list d);
+int print_u(va_list u);
+int print_b(va_list b);
+int print_o(va_list o);
+int print_x(va_list x);
+int print_X(va_list X);
+int print_p(va_list p);
+int print_S(va_list S);
+int print_r(va_list r);
+int print_R(va_list R);
+
+#endif  /* _MAIN_H */
