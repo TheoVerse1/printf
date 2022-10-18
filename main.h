@@ -1,32 +1,40 @@
-#ifndef _MAIN_H_
-#define _MAIN_H_
-
+#ifndef MAIN_H
+#define MAIN_H
 #include <stdarg.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
 /**
- * struct print - structure for printing various types
- * @t: type to print
- * @f: function to print
+ * struct printHandler - struct for agrupate
+ * %d, %c, etc... formatters
+ * @c: character
+ * @f: character func
+ *
  */
-typedef struct print
+typedef struct printHandler
 {
-	char *t;
+	char c;
 	int (*f)(va_list);
-} print_t;
+} ph;
 
-int _putchar(char c);
 int _printf(const char *format, ...);
-int print_c(va_list c);
-int print_s(va_list s);
-int print_i(va_list i);
-int print_d(va_list d);
-int print_u(va_list u);
-int print_b(va_list b);
-int print_o(va_list o);
-int print_x(va_list x);
-int print_X(va_list X);
-int print_p(va_list p);
-int print_S(va_list S);
-int print_r(va_list r);
-int print_R(va_list R);
+int (*get_print(char c))(va_list);
+int _putchar(char c);
+int _puts(char *str);
+char *string_to_base(unsigned long int num, int base, bool uppercase);
+int print_char(va_list);
+int print_string(va_list);
+int print_reverse_string(va_list);
+int print_address(va_list);
+int print_int(va_list);
+int print_unsigned(va_list);
+int print_hexa(va_list);
+int print_octal(va_list);
+int print_binary(va_list);
+int print_percent(va_list);
+int print_hexa_in_uppercase(va_list);
+int count_digits(int i);
+void print_number(int n);
+void print_rev_recursion(char *s);
 
-#endif  /* _MAIN_H */
+#endif
